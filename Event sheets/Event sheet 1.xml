@@ -1,0 +1,999 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="rand" sid="548172271024243" static="0" type="number">0</variable>
+        <include>enemyes</include>
+        <include>BulletsES</include>
+        <event-group description="" sid="747155461092251" title="PlayerControls">
+            <sub-events>
+                <event-block any="1" sid="787037981410113">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="847687836099250" type="Keyboard">
+                            <param id="0" name="Key">32</param>
+                        </condition>
+                        <condition id="3" name="On touched object" sid="620865042105745" type="Touch">
+                            <param id="0" name="Object">ShootButton</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="909869714153703" type="StarshipController">
+                            <param id="0" name="Instance variable">isShooting</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1" sid="910883686631894">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="880339087255294" type="Keyboard">
+                            <param id="0" name="Key">32</param>
+                        </condition>
+                        <condition id="4" name="Is touching object" sid="333949416097686" type="Touch">
+                            <param id="0" name="Object">ShootButton</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" sid="441844118859248" type="System">
+                            <param id="0" name="Seconds">StarshipController.ShootingInterval</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="746483591889933">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="858378241587635" type="StarshipController">
+                                    <param id="0" name="Instance variable">isShooting</param>
+                                </condition>
+                                <condition id="-6" name="Every X seconds" sid="964233732062272" type="System">
+                                    <param id="0" name="Interval (seconds)">StarshipController.ShootingInterval</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="917750487511840" type="StarshipController">
+                                    <param id="0" name="Object">BulletController</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">&quot;Gun1&quot;</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="336864412081505" type="BulletController">
+                                    <param id="0" name="Instance variable">Damage</param>
+                                    <param id="1" name="Value">BulletArray.At(StarshipController.BulletType, 0)</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="298445077324236" type="BulletController">
+                                    <param id="0" name="Speed">BulletArray.At(StarshipController.BulletType, 1)</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="284615969740139" type="BulletController">
+                                    <param id="0" name="Width">BulletArray.At(StarshipController.BulletType, 2)</param>
+                                    <param id="1" name="Height">BulletArray.At(StarshipController.BulletType, 3)</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="216348902995923" type="BulletController">
+                                    <param id="0" name="Angle">270</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="563708540868478" type="BulletController">
+                                    <param id="0" name="Instance variable">isPlayer</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="149198312968103">
+                                    <conditions>
+                                        <condition id="2" inverted="1" name="Is playing" sid="532573970312695" type="ShootButton">
+                                            <param id="0" name="Animation">&quot;ButtDown&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="279435373240824" type="ShootButton">
+                                            <param id="0" name="Animation">&quot;ButtDown&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-7" name="Set size" sid="154839855413994" type="ShootButton">
+                                            <param id="0" name="Width">64</param>
+                                            <param id="1" name="Height">64</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="986853149870654">
+                    <conditions>
+                        <condition id="3" name="On key released" sid="476430585131802" type="Keyboard">
+                            <param id="0" name="Key">32</param>
+                        </condition>
+                        <condition id="2" inverted="1" name="Is playing" sid="477304217794844" type="ShootButton">
+                            <param id="0" name="Animation">&quot;ButUp&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="547406867285258" type="StarshipController">
+                            <param id="0" name="Instance variable">isShooting</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="127101761885704" type="ShootButton">
+                            <param id="0" name="Animation">&quot;ButUp&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="160997229753328" type="ShootButton">
+                            <param id="0" name="Width">96</param>
+                            <param id="1" name="Height">96</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="970697175452865">
+                    <conditions>
+                        <condition id="1" name="On any touch end" sid="399169605925105" type="Touch" />
+                        <condition id="4" name="Is touching object" sid="607195648905464" type="Touch">
+                            <param id="0" name="Object">ShootButton</param>
+                        </condition>
+                        <condition id="2" inverted="1" name="Is playing" sid="118039688266789" type="ShootButton">
+                            <param id="0" name="Animation">&quot;ButUp&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="137212068557006" type="ShootButton">
+                            <param id="0" name="Animation">&quot;ButUp&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="117222698913088" type="StarshipController">
+                            <param id="0" name="Instance variable">isShooting</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="117993162754959" type="ShootButton">
+                            <param id="0" name="Width">96</param>
+                            <param id="1" name="Height">96</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="531340673747072">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="653580202627676" type="Touch">
+                            <param id="0" name="Object">ButtonUp</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="804864378807832" type="StarshipController">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="277286739633416">
+                            <conditions>
+                                <condition id="2" name="Is playing" sid="955206049033816" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtomUp&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="222119231943533" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtomUp&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="484161565601156">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="635393606074335" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="992868909605185">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Is playing" sid="375695377004586" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtomUp&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="439186945170255" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtomUp&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="266312595094945">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="408206047416808" type="Touch">
+                            <param id="0" name="Object">ButtonDown</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="907271161882427" type="StarshipController">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="816586327153454">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Is playing" sid="452329424123295" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonDown&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="480260582250634" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonDown&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="745705131132287">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="802163254265540" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="860760758067518">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Is playing" sid="370524527084825" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonDown&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="323200864519414" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonDown&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="872236237830049">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="244104242367870" type="Touch">
+                            <param id="0" name="Object">ButtonLeft</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction2" id="7" name="Simulate control" sid="446686383643986" type="StarshipController">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="656410072037888">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Is playing" sid="442395467143202" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonLeft&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="804262703199387" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonLeft&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="127145170652326">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="518313808030258" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="295825658113675">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Is playing" sid="603825141382002" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonLeft&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="630194048498214" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonLeft&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="706824392493902">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="667408579801737" type="Touch">
+                            <param id="0" name="Object">ButtonRigth</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction2" id="7" name="Simulate control" sid="402180811992790" type="StarshipController">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="644448465471738">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Is playing" sid="416923630436396" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonRigth&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="412022987295387" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonRigth&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="456925921383689">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="612001996703527" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="546397605164740">
+                            <conditions>
+                                <condition id="2" inverted="1" name="Is playing" sid="698290348119556" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonRigth&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="820056365444313" type="ButtonUp">
+                                    <param id="0" name="Animation">&quot;ButtonRigth&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="946155985125763" title="EnemyControl">
+            <sub-events>
+                <event-group description="" sid="116054494098382" title="ShootingMenager">
+                    <sub-events>
+                        <event-block sid="997290050401958">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="685194363041196" type="EnemyController">
+                                    <param id="0" name="Instance variable">isShooting</param>
+                                </condition>
+                                <condition id="-6" name="Every X seconds" sid="506011224002014" type="System">
+                                    <param id="0" name="Interval (seconds)">EnemyController.ShootingInterval</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="762733994453618" type="EnemyController">
+                                    <param id="0" name="Object">BulletController</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">&quot;Gun&quot;</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="606880920517147" type="BulletController">
+                                    <param id="0" name="Instance variable">Damage</param>
+                                    <param id="1" name="Value">BulletArray.At(EnemyController.BulletType, 0)</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="119493218936569" type="BulletController">
+                                    <param id="0" name="Speed">BulletArray.At(EnemyController.BulletType, 1)</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="616350541075641" type="BulletController">
+                                    <param id="0" name="Width">BulletArray.At(StarshipController.BulletType, 2)</param>
+                                    <param id="1" name="Height">BulletArray.At(EnemyController.BulletType, 3)</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="598520302215698" type="BulletController">
+                                    <param id="0" name="Angle">90</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="564352333944395" type="BulletController">
+                                    <param id="0" name="Instance variable">isPlayer</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="522483712810735">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="961822406302723" type="BulletArray" />
+                            </conditions>
+                            <actions>
+                                <action id="10" name="Insert" sid="100070783032605" type="BulletArray">
+                                    <param id="0" name="Value">40</param>
+                                    <param id="1" name="Index">4</param>
+                                    <param id="2" name="Axis">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="375133946386914" title="Inimigos">
+                    <sub-events>
+                        <event-block sid="563480701619736">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="214698112622322" type="System">
+                                    <param id="0" name="Interval (seconds)">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="391818078323514" type="System">
+                                    <param id="0" name="Object to create">EnemyController</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">choose(100,150,200,250,300,350,400,450)</param>
+                                    <param id="3" name="Y">-200</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="858293424104984" title="InvunerabilityHandler">
+                    <sub-events>
+                        <event-block sid="245389892327994">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="718781444943367" type="System">
+                                    <param id="0" name="Object">EnemyController</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="189664900087059" type="EnemyController">
+                                    <param id="0" name="Instance variable">isInvunerable</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="309243264159378">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="297746935242069" type="EnemyController">
+                                            <param id="0" name="Instance variable">CurrentInvunerableTime</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">EnemyController.InvulnerableTime</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Add to" sid="373158182944743" type="EnemyController">
+                                            <param id="0" name="Instance variable">CurrentInvunerableTime</param>
+                                            <param id="1" name="Value">dt</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="115270323621376">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="552509501356312" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="723935611482336" type="EnemyController">
+                                            <param id="0" name="Instance variable">isInvunerable</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="686754264646343" title="DeathHandler">
+                    <sub-events>
+                        <event-block sid="235904229835042">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="448915011737294" type="System">
+                                    <param id="0" name="Object">EnemyController</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="985514872608147" type="EnemyController">
+                                    <param id="0" name="Instance variable">CurrentEnergy</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="114358399168611" type="EnemyController" />
+                                <action id="-9" name="Set value" sid="431622105684344" type="System">
+                                    <param id="0" name="Variable">rand</param>
+                                    <param id="1" name="Value">random(10)</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="461041517523966">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="227021495709125" type="System">
+                                            <param id="0" name="Variable">rand</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">4</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="243353295650458" type="System">
+                                            <param id="0" name="Object to create">powerControl</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">EnemyController.X</param>
+                                            <param id="3" name="Y">EnemyController.Y</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="543239563791137" title="DamageCalculer">
+                    <sub-events>
+                        <event-block sid="625903749123964">
+                            <conditions>
+                                <condition id="0" name="On collision with another object" sid="602799851754212" type="EnemyController">
+                                    <param id="0" name="Object">BulletController</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="531703102688586">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="392414072803208" type="BulletController">
+                                            <param id="0" name="Instance variable">isPlayer</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="964272271118939">
+                                            <conditions>
+                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="520384608808758" type="BulletController">
+                                                    <param id="0" name="Instance variable">Passthrough</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="879745102715696" type="BulletController" />
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="375276818343204">
+                                            <conditions>
+                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="106235468850994" type="EnemyController">
+                                                    <param id="0" name="Instance variable">isInvunerable</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="693364931913396">
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" sid="198080469587181" type="EnemyController">
+                                                            <param id="0" name="Instance variable">Shield</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">BulletController.ImageHeight</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-12" name="Subtract from" sid="924828922230987" type="EnemyController">
+                                                            <param id="0" name="Instance variable">CurrentEnergy</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="215970685860834">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="508826709180604" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-12" name="Subtract from" sid="718475853769443" type="EnemyController">
+                                                            <param id="0" name="Instance variable">CurrentEnergy</param>
+                                                            <param id="1" name="Value">BulletController.Damage - EnemyController.Shield</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="418458250612343">
+                                                    <conditions />
+                                                    <actions>
+                                                        <action id="-13" name="Set boolean" sid="357347639460717" type="EnemyController">
+                                                            <param id="0" name="Instance variable">isInvunerable</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="310519571817369" title="BottomDestroyer">
+                    <sub-events>
+                        <event-block sid="658733436140436">
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" sid="682980844900882" type="EnemyController">
+                                    <param id="0" name="Object">BottomDestroy</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="432576395037648" type="EnemyController">
+                                    <param id="0" name="Instance variable">DestroyOnBottom</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="121358457110556" type="EnemyController" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="912163433156804" title="MoveDown">
+                    <sub-events>
+                        <event-block sid="355415560309787">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="129444426388572" type="System">
+                                    <param id="0" name="Object">EnemyController</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="424960362493320" type="EnemyController">
+                                    <param id="0" name="Instance variable">isMoveDown</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="524497623377993" type="EnemyController">
+                                    <param id="0" name="Control">3</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="254296838647284" title="InterfaceMeneger">
+            <sub-events>
+                <event-group description="" sid="237097912107155" title="EnergyUi">
+                    <sub-events>
+                        <event-block sid="823346517558943">
+                            <conditions />
+                            <actions>
+                                <action id="-6" name="Set height" sid="727357454813525" type="EnergyUi">
+                                    <param id="0" name="Height">128*StarshipController.CurrentEnergy/100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="623221264975876" title="PlayerDamage" />
+        <event-block any="1" sid="551579407980614">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="423714615953656" type="StarshipController">
+                    <param id="0" name="Object">BulletController</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="502159118258107">
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="832047502022245" type="BulletController">
+                            <param id="0" name="Instance variable">isPlayer</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="990065470872131">
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="813296612249919" type="BulletController">
+                                    <param id="0" name="Instance variable">Passthrough</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="163963042589727" type="BulletController" />
+                            </actions>
+                        </event-block>
+                        <event-block sid="672152695751139">
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="171981191766910" type="StarshipController">
+                                    <param id="0" name="Instance variable">isIvunerable</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="623427600012595">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="669108066435356" type="StarshipController">
+                                            <param id="0" name="Instance variable">BulletType</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Value">BulletController.ImageHeight</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="421784093689444" type="StarshipController">
+                                            <param id="0" name="Instance variable">CurrentEnergy</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="378599181797424">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="235391156767654" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="488408447650944" type="StarshipController">
+                                            <param id="0" name="Instance variable">CurrentEnergy</param>
+                                            <param id="1" name="Value">BulletController.Damage - StarshipController.Shield</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="960219066585953">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="481163841378646" type="StarshipController">
+                                                    <param id="0" name="Instance variable">CurrentEnergy</param>
+                                                    <param id="1" name="Comparison">3</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="254087239572864" type="StarshipController">
+                                                    <param id="0" name="Instance variable">CurrentEnergy</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="499640103200614">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="890877791661093" type="StarshipController">
+                                            <param id="0" name="Instance variable">isIvunerable</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="398234649399352">
+            <conditions>
+                <condition id="-11" name="For Each" sid="537028807265017" type="System">
+                    <param id="0" name="Object">StarshipController</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="831933586143751" type="StarshipController">
+                    <param id="0" name="Instance variable">isIvunerable</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="518841193522092">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="947844582369427" type="StarshipController">
+                            <param id="0" name="Instance variable">BulletType</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">EnemyController.InvulnerableTime</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="487645317798637" type="StarshipController">
+                            <param id="0" name="Instance variable">ivunerableTime</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="514843081365132">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="679873969797378" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="229203699409141" type="StarshipController">
+                            <param id="0" name="Instance variable">ivunerableTime</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="670445013303094" type="StarshipController">
+                            <param id="0" name="Instance variable">isIvunerable</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="437595215727276">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="719236156193521" type="StarshipController">
+                    <param id="0" name="Object">EnemyController</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="513687928095969">
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="762867300583720" type="StarshipController">
+                            <param id="0" name="Instance variable">isIvunerable</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="948812890880533">
+                            <conditions />
+                            <actions />
+                            <sub-events>
+                                <event-block sid="508918245998922">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="958803387277836" type="StarshipController">
+                                            <param id="0" name="Instance variable">BulletType</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Value">EnemyController.HitDamage</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="174150922370049" type="StarshipController">
+                                            <param id="0" name="Instance variable">CurrentEnergy</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="680066198458941">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="551003236584234" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="368312491244347" type="StarshipController">
+                                            <param id="0" name="Instance variable">CurrentEnergy</param>
+                                            <param id="1" name="Value">EnemyController.HitDamage - StarshipController.Shield</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="675197962892270">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="380397254828199" type="StarshipController">
+                                                    <param id="0" name="Instance variable">CurrentEnergy</param>
+                                                    <param id="1" name="Comparison">3</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="666460737555509" type="StarshipController">
+                                                    <param id="0" name="Instance variable">CurrentEnergy</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="435871065675377">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="670844050642600" type="StarshipController">
+                                            <param id="0" name="Instance variable">isIvunerable</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="156584178717533">
+                    <conditions />
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="759846087034258" title="power">
+            <sub-events>
+                <event-block sid="944151782906793">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="387777011590244" type="System">
+                            <param id="0" name="Object">powerControl</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="294467098878085">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="828175340235532" type="powerControl">
+                                    <param id="0" name="Instance variable">currentExistencetime</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">powerControl.existenceTime</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="338284247045494" type="powerControl">
+                                    <param id="0" name="Instance variable">currentExistencetime</param>
+                                    <param id="1" name="Value">dt</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="870910532655361">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="221806853481139" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="360812273763290" type="powerControl" />
+                            </actions>
+                        </event-block>
+                        <event-group description="" sid="523862764862664" title="colision">
+                            <sub-events>
+                                <event-block sid="525979947538584">
+                                    <conditions>
+                                        <condition id="0" name="On collision with another object" sid="534901225611962" type="StarshipController">
+                                            <param id="0" name="Object">powerControl</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="748267169898321" type="powerControl" />
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="652713801105809">
+                                            <conditions>
+                                                <condition id="-8" name="Is boolean instance variable set" sid="101228482697262" type="powerControl">
+                                                    <param id="0" name="Instance variable">isShotingSpeed</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="464830437932885" type="StarshipController">
+                                                    <param id="0" name="Instance variable">temp_ShotingInterval</param>
+                                                    <param id="1" name="Value">self.ShootingInterval</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="180052822131065" type="StarshipController">
+                                                    <param id="0" name="Instance variable">ShootingInterval</param>
+                                                    <param id="1" name="Value">powerControl.ShotingInterval</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="427512700038525">
+                                            <conditions>
+                                                <condition id="-8" name="Is boolean instance variable set" sid="410929124315177" type="powerControl">
+                                                    <param id="0" name="Instance variable">isBulletChanger</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="451663614422097" type="StarshipController">
+                                                    <param id="0" name="Instance variable">temp_bulletType</param>
+                                                    <param id="1" name="Value">self.BulletType</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="653898083510755" type="StarshipController">
+                                                    <param id="0" name="Instance variable">BulletType</param>
+                                                    <param id="1" name="Value">powerControl.BulletType</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="259627977615759">
+                                            <conditions>
+                                                <condition id="-8" name="Is boolean instance variable set" sid="212867544258950" type="powerControl">
+                                                    <param id="0" name="Instance variable">isTimed</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="565468979463438" type="StarshipController">
+                                                    <param id="0" name="Instance variable">timing</param>
+                                                    <param id="1" name="Value">powerControl.powerupTime</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="402609790318740" title="Group2">
+            <sub-events>
+                <event-block sid="141618971407839">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="439998736250315" type="StarshipController">
+                            <param id="0" name="Instance variable">timing</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-6" name="Every X seconds" sid="822673660568036" type="System">
+                            <param id="0" name="Interval (seconds)">1.0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="601121235629846" type="StarshipController">
+                            <param id="0" name="Instance variable">timing</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="653552614599316" type="Text">
+                            <param id="0" name="Text">StarshipController.BulletType</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="415731705065044">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="408680841605270" type="StarshipController">
+                            <param id="0" name="Instance variable">timing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="525199892314442" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="775382578082003" type="StarshipController">
+                            <param id="0" name="Instance variable">BulletType</param>
+                            <param id="1" name="Value">self.temp_bulletType</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="335401109843823" type="StarshipController">
+                            <param id="0" name="Instance variable">ShootingInterval</param>
+                            <param id="1" name="Value">self.temp_ShotingInterval</param>
+                        </action>
+                        <action id="-12" name="Subtract from" sid="498368808623143" type="StarshipController">
+                            <param id="0" name="Instance variable">timing</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
